@@ -1,15 +1,14 @@
 package com.example.tests;
 
 import static org.junit.Assert.fail;
-
 import java.util.concurrent.TimeUnit;
-
 // import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 // import org.openqa.selenium.NoAlertPresentException;
 // import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 // import org.testng.annotations.BeforeClass;
 // import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
@@ -61,6 +60,46 @@ public class TestBase {
 
 	protected void openMainPage() {
 		driver.get(baseUrl + "/addressbookv4.1.4/");
+	}
+
+	protected void initNewUserCreation() {
+		driver.findElement(By.linkText("add new")).click();
+	}
+
+	protected void gotoHomePage() {
+		driver.findElement(By.linkText("home")).click();
+	}
+
+	protected void submitUserCreation() {
+		driver.findElement(By.name("submit")).click();
+	}
+
+	protected void fillUserForm(UserData user) {
+		driver.findElement(By.name("firstname")).clear();
+	    driver.findElement(By.name("firstname")).sendKeys(user.firstname);
+	    driver.findElement(By.name("lastname")).clear();
+	    driver.findElement(By.name("lastname")).sendKeys(user.lastname);
+	    driver.findElement(By.name("address")).clear();
+	    driver.findElement(By.name("address")).sendKeys(user.firstaddr);
+	    driver.findElement(By.name("mobile")).clear();
+	    driver.findElement(By.name("mobile")).sendKeys(user.mobilephone);
+	    driver.findElement(By.name("home")).clear();
+	    driver.findElement(By.name("home")).sendKeys(user.homephone);
+	    driver.findElement(By.name("work")).clear();
+	    driver.findElement(By.name("work")).sendKeys(user.jobphone);
+	    driver.findElement(By.name("email")).clear();
+	    driver.findElement(By.name("email")).sendKeys(user.firstmail);
+	    driver.findElement(By.name("email2")).clear();
+	    driver.findElement(By.name("email2")).sendKeys(user.secondmail);
+	    new Select(driver.findElement(By.name("bday"))).selectByVisibleText(user.selectbdate);
+	    new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(user.selectbmonth);
+	    driver.findElement(By.name("byear")).clear();
+	    driver.findElement(By.name("byear")).sendKeys(user.byear);
+	    new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(user.selectgroup);
+	    driver.findElement(By.name("address2")).clear();
+	    driver.findElement(By.name("address2")).sendKeys(user.secondaddr);
+	    driver.findElement(By.name("phone2")).clear();
+	    driver.findElement(By.name("phone2")).sendKeys(user.secondphone);
 	}
 }
 
