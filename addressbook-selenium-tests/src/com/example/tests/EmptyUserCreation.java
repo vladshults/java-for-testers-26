@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class EmptyUserCreation extends TestBase {
   
   @Test
-  public void testUntitled() throws Exception {
+  public void testEmptyUserCreation() throws Exception {
     openMainPage ();
     initNewUserCreation();
     UserData user = new UserData();
