@@ -6,8 +6,8 @@ public class NonEmptyUserCreation extends TestBase {
   
   @Test
   public void testNonEmptyUserCreation() throws Exception {
-    openMainPage ();
-    initNewUserCreation();
+    app.getNavigationHelper().openMainPage ();
+    app.getContactHelper().initNewUserCreation();
     UserData user = new UserData();
     // "Ivan", "Ivanov", "125040\n5/2-228 Leningradsky av., Moscow,\nRussia", "011-7-9161214670", 
     // "011-7-4992576491", "8-495-644-31-30", "pomidoroff2000@rambler.ru", "groupv@rambler.ru", "2", 
@@ -26,8 +26,8 @@ public class NonEmptyUserCreation extends TestBase {
     user.selectgroup = "Rob";
     user.secondaddr = "101000\n35, Myasnitskaya,\nMoscow,\nRussia";
     user.secondphone = "????";
-    fillUserForm(user);
-    submitUserCreation();
-    gotoHomePage();
+    app.getContactHelper().fillUserForm(user);
+    app.getContactHelper().submitUserCreation();
+    app.getContactHelper().gotoHomePage();
   }
 }

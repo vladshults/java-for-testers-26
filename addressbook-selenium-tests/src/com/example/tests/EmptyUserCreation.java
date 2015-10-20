@@ -6,8 +6,8 @@ public class EmptyUserCreation extends TestBase {
   
   @Test
   public void testEmptyUserCreation() throws Exception {
-    openMainPage ();
-    initNewUserCreation();
+    app.getNavigationHelper().openMainPage ();
+    app.getContactHelper().initNewUserCreation();
     UserData user = new UserData();
    
     user.firstname = "SomeEmptyUser";
@@ -25,8 +25,8 @@ public class EmptyUserCreation extends TestBase {
     user.secondaddr = "";
     user.secondphone = "";
     
-    fillUserForm(user);
-    submitUserCreation();
-    gotoHomePage();
+    app.getContactHelper().fillUserForm(user);
+    app.getContactHelper().submitUserCreation();
+    app.getContactHelper().gotoHomePage();
   }
 }
