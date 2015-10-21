@@ -9,7 +9,7 @@ import com.example.fw.ApplicationManager;
 
 public class TestBase {
 
-	protected ApplicationManager app;
+	protected static ApplicationManager app;
 	
 
 	@BeforeTest
