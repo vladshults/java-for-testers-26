@@ -27,6 +27,6 @@ public class EmptyUserCreation extends TestBase {
     
     app.getContactHelper().fillUserForm(user);
     app.getContactHelper().submitUserCreation();
-    app.getContactHelper().gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
   }
 }

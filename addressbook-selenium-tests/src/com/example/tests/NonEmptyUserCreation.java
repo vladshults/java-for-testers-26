@@ -28,6 +28,6 @@ public class NonEmptyUserCreation extends TestBase {
     user.secondphone = "????";
     app.getContactHelper().fillUserForm(user);
     app.getContactHelper().submitUserCreation();
-    app.getContactHelper().gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
   }
 }
