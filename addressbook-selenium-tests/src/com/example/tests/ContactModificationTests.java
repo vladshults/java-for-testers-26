@@ -1,5 +1,11 @@
 package com.example.tests;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import org.testng.annotations.Test;
 
 public class ContactModificationTests extends TestBase {
@@ -7,7 +13,16 @@ public class ContactModificationTests extends TestBase {
 	@Test
 	public void modifySomeContact() {
 		app.getNavigationHelper().openMainPage();
-		app.getContactHelper().initContactModification();
+		app.getNavigationHelper().gotoHomePage();
+		
+		// save old state
+	    List<UserData> oldList = app.getContactHelper().getContacts();
+		
+	    
+	    // actions
+	    Random rnd = new Random();
+	    int index = rnd.nextInt(oldList.size() - 1);
+	    
 		UserData user = new UserData();
 		user.firstname = "ModificatedUserName";
 	    user.lastname = "ModificatedIvanov";
@@ -23,8 +38,19 @@ public class ContactModificationTests extends TestBase {
 	    // user.selectgroup = "Rob";
 	    // user.secondaddr = "101000\n35, Myasnitskaya,\nMoscow,\nRussia";
 	    // user.secondphone = "????";
+	    app.getContactHelper().selectContactByIndex(index);
 	    app.getContactHelper().fillUserForm(user);
 		app.getContactHelper().submitUserModification();
 		app.getNavigationHelper().gotoHomePage();
+		
+		// save new state
+	    List<UserData> newList = app.getContactHelper().getContacts();
+	    
+	    // compare states
+	    oldList.remove(index);
+	    oldList.add(user);
+	    Collections.sort(oldList);
+	    assertEquals(oldList, newList);
+		
 	}
 }

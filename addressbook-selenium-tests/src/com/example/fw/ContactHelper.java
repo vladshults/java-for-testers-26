@@ -1,6 +1,12 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+//import com.example.tests.GroupData;
 import com.example.tests.UserData;
 
 public class ContactHelper extends HelperBase {
@@ -34,14 +40,9 @@ public class ContactHelper extends HelperBase {
 		click(By.name("submit"));
 	}
 
-	private void selectContactByFirstElement() {
-		click(By.xpath("//input[@name='selected[]']"));
-	}
-
-	public void initContactModification() {
-		selectContactByFirstElement();
-		click(By.xpath("//img[@title='Edit'][1]"));
-	}
+	//private void selectContactByFirstElement() {
+	//	click(By.xpath("//input[@name='selected[]']"));
+	//}
 
 	public void submitUserModification() {
 		click(By.name("update"));
@@ -49,5 +50,35 @@ public class ContactHelper extends HelperBase {
 
 	public void submitContactDeletion() {
 		click(By.xpath("//form[2]/input[2]"));
+	}
+	
+	public List<UserData> getContacts() {
+		List<UserData> contacts = new ArrayList<UserData>();
+		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
+		for (WebElement checkbox : checkboxes) {
+			UserData user = new UserData();
+			String title = checkbox.getAttribute("title");
+			// user.firstname = title.substring("Select (".length(), title.length() - ")".length());
+			String str = title.substring("Select (".length(), title.length() - ")".length());
+			String[] splitted = str.split("\\s+");
+			if (splitted.length > 1) {
+				user.lastname = splitted[1];
+			} else {
+				user.lastname = "";
+			}
+			contacts.add(user);
+		}
+		return contacts;
+	}
+
+	public void deleteContact(int index) {
+		selectContactByIndex(index);
+		submitContactDeletion();
+	}
+
+	public void selectContactByIndex(int index) {
+		List<WebElement> rows = driver.findElements(By.name("entry"));
+		List<WebElement> cells = rows.get(index).findElements(By.tagName("td"));
+		cells.get(6).findElement(By.tagName("a")).click();
 	}
 }
