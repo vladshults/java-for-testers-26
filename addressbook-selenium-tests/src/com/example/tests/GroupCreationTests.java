@@ -20,6 +20,7 @@ public class GroupCreationTests extends TestBase {
 		group.name = generateRandomString();
 		group.header = generateRandomString();
 		group.footer = generateRandomString();
+		list.add(new Object[]{ group });
 	  }
 	return list.iterator();
   }
