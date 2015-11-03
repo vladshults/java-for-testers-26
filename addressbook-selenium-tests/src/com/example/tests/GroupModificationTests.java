@@ -11,8 +11,8 @@ public class GroupModificationTests extends TestBase {
 	
 	@Test
 	public void modifySomeGroup() {
-		app.getNavigationHelper().openMainPage();
-		app.getNavigationHelper().gotoGroupsPage();
+		app.navigateTo().mainPage();
+		app.navigateTo().groupsPage();
 		
 		// save old state
 	    List<GroupData> oldList = app.getGroupHelper().getGroups();
@@ -23,7 +23,7 @@ public class GroupModificationTests extends TestBase {
 		group.name = "modificated name";
 		app.getGroupHelper().fillGroupForm(group);
 		app.getGroupHelper().submitGroupModification();
-		app.getNavigationHelper().gotoGroupsPage();
+		app.navigateTo().groupsPage();
 		
 		// save new state
 	    List<GroupData> newList = app.getGroupHelper().getGroups();
