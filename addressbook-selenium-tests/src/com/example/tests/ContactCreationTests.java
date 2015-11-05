@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase {
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator() {
 	    List<Object[]> list = new ArrayList<Object[]>();
-	      for (int i = 0; i < 5; i++) {
+	      for (int i = 0; i < 4; i++) {
 			UserData contact = new UserData();
 			contact = app.getContactHelper().getPseudoRandomContact();
 			list.add(new Object[]{ contact });
@@ -26,10 +26,8 @@ public class ContactCreationTests extends TestBase {
 	
     @Test(dataProvider = "randomValidContactGenerator")
     public void testValidUserCreation(UserData contact) throws Exception {
-       app.navigateTo().mainPage ();
-       app.navigateTo().gotoHomePage ();
-       
-       app.getContactHelper().rebuildCache();
+              
+       app.getContactHelper().rebuildContsCache();
        
        // save old state
        List<UserData> oldList = app.getContactHelper().getContacts();

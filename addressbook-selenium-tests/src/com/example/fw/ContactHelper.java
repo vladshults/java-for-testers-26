@@ -39,6 +39,7 @@ public class ContactHelper extends HelperBase {
 
 	public void submitUserCreation() {
 		click(By.name("submit"));
+		cachedContacts = null;
 	}
 
 	//private void selectContactByFirstElement() {
@@ -47,18 +48,27 @@ public class ContactHelper extends HelperBase {
 
 	public void submitUserModification() {
 		click(By.name("update"));
+		cachedContacts = null;
 	}
 
 	public void submitContactDeletion() {
 		click(By.xpath("//form[2]/input[2]"));
+		cachedContacts = null;
 	}
 	
-	public void rebuildCache() {
-		//
-	}
+	List<UserData> cachedContacts = new ArrayList<UserData>();
 	
 	public List<UserData> getContacts() {
-		List<UserData> contacts = new ArrayList<UserData>();
+		if (cachedContacts == null) {
+			rebuildContsCache();
+		}
+		return cachedContacts;
+	}
+	
+	public void rebuildContsCache() {
+		cachedContacts = new ArrayList<UserData>();
+		manager.navigateTo().mainPage ();
+	    manager.navigateTo().gotoHomePage ();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
 		for (WebElement checkbox : checkboxes) {
 			UserData user = new UserData();
@@ -71,14 +81,14 @@ public class ContactHelper extends HelperBase {
 			} else {
 				user.lastname = "";
 			}
-			contacts.add(user);
+			cachedContacts.add(user);
 		}
-		return contacts;
 	}
 
 	public void deleteContact(int index) {
 		selectContactByIndex(index);
 		submitContactDeletion();
+		cachedContacts = null;
 	}
 
 	public void selectContactByIndex(int index) {
