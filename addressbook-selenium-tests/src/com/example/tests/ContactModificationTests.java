@@ -12,8 +12,8 @@ public class ContactModificationTests extends TestBase {
 	
 	@Test
 	public void modifySomeContact() {
-		app.navigateTo().mainPage();
-		app.navigateTo().gotoHomePage();
+		app.getNavigationHelper().openMainPage();
+		app.getNavigationHelper().gotoHomePage();
 		
 		// save old state
 	    List<UserData> oldList = app.getContactHelper().getContacts();
@@ -41,7 +41,7 @@ public class ContactModificationTests extends TestBase {
 	    app.getContactHelper().selectContactByIndex(index);
 	    app.getContactHelper().fillUserForm(user);
 		app.getContactHelper().submitUserModification();
-		app.navigateTo().gotoHomePage();
+		app.getNavigationHelper().gotoHomePage();
 		
 		// save new state
 	    List<UserData> newList = app.getContactHelper().getContacts();

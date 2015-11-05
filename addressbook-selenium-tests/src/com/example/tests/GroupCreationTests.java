@@ -15,7 +15,7 @@ public class GroupCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> randomValidGroupGenerator() {
     List<Object[]> list = new ArrayList<Object[]>();
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < 5; i++) {
 		GroupData group = new GroupData();
 		group.name = generateRandomString();
 		group.header = generateRandomString();
@@ -36,17 +36,17 @@ public class GroupCreationTests extends TestBase {
 
   @Test(dataProvider = "randomValidGroupGenerator")
   public void testGroupCreationWithValidData(GroupData group) throws Exception {
-    app.navigateTo().mainPage();
-    app.navigateTo().groupsPage();
+    app.getNavigationHelper().openMainPage();
+    app.getNavigationHelper().gotoGroupsPage();
     
     // save old state
     List<GroupData> oldList = app.getGroupHelper().getGroups();
- 
+    
     // actions
     app.getGroupHelper().initNewGroupCreation();
     app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupCreation();
-    app.navigateTo().groupsPage();
+    app.getNavigationHelper().gotoGroupsPage();
     
     // save new state
     List<GroupData> newList = app.getGroupHelper().getGroups();
@@ -54,7 +54,6 @@ public class GroupCreationTests extends TestBase {
     // compare states
     oldList.add(group);
     Collections.sort(oldList);
-    Collections.sort(newList);
     assertEquals(oldList, newList);
     
   }

@@ -26,8 +26,8 @@ public class ContactCreationTests extends TestBase {
 	
     @Test(dataProvider = "randomValidContactGenerator")
     public void testValidUserCreation(UserData contact) throws Exception {
-       app.navigateTo().mainPage ();
-       app.navigateTo().gotoHomePage ();
+       app.getNavigationHelper().openMainPage ();
+       app.getNavigationHelper().gotoHomePage ();
        
        // save old state
        List<UserData> oldList = app.getContactHelper().getContacts();
@@ -37,7 +37,7 @@ public class ContactCreationTests extends TestBase {
        
        app.getContactHelper().fillUserForm(contact);
        app.getContactHelper().submitUserCreation();
-       app.navigateTo().gotoHomePage();
+       app.getNavigationHelper().gotoHomePage();
        
        // save new state
        List<UserData> newList = app.getContactHelper().getContacts();

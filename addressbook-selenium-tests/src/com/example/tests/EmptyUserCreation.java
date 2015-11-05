@@ -6,7 +6,7 @@ public class EmptyUserCreation extends TestBase {
   
   @Test
   public void testEmptyUserCreation() throws Exception {
-    app.navigateTo().mainPage ();
+    app.getNavigationHelper().openMainPage ();
     app.getContactHelper().initNewUserCreation();
     UserData user = new UserData();
    
@@ -27,6 +27,6 @@ public class EmptyUserCreation extends TestBase {
     
     app.getContactHelper().fillUserForm(user);
     app.getContactHelper().submitUserCreation();
-    app.navigateTo().gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
   }
 }

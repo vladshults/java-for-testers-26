@@ -11,8 +11,8 @@ public class EmptyGroupCreationTests extends TestBase {
   
   @Test
   public void testEmptyGroupCreation() throws Exception {
-    app.navigateTo().mainPage();
-    app.navigateTo().groupsPage();
+    app.getNavigationHelper().openMainPage();
+    app.getNavigationHelper().gotoGroupsPage();
     
     // save old state
     List<GroupData> oldList = app.getGroupHelper().getGroups();
@@ -25,7 +25,7 @@ public class EmptyGroupCreationTests extends TestBase {
     group.footer = "";
 	app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupCreation();
-    app.navigateTo().groupsPage();
+    app.getNavigationHelper().gotoGroupsPage();
     
     // save new state
     List<GroupData> newList = app.getGroupHelper().getGroups();
