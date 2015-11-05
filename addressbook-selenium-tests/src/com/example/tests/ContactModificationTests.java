@@ -12,10 +12,10 @@ public class ContactModificationTests extends TestBase {
 	
 	@Test
 	public void modifySomeContact() {
-		app.navigateTo().mainPage();
-		app.navigateTo().gotoHomePage();
 		
-		// save old state
+		app.getContactHelper().rebuildContsCache();
+	       
+	    // save old state
 	    List<UserData> oldList = app.getContactHelper().getContacts();
 		
 	    
