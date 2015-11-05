@@ -1,5 +1,7 @@
 package com.example.tests;
 
+// 05_11_2015: to save state as it should be at HW#7
+
 import static org.testng.Assert.assertEquals;
 
 import java.util.ArrayList;
