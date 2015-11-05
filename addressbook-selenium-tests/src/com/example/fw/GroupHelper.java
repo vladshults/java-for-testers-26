@@ -17,6 +17,7 @@ public class GroupHelper extends HelperBase {
 
 	public void initNewGroupCreation() {
 		click(By.name("new"));
+		// cachedGroups = null;
 	}
 
 	public void fillGroupForm(GroupData group) {
@@ -63,9 +64,10 @@ public class GroupHelper extends HelperBase {
 		return cachedGroups;
 	}
 
-	private void rebuildCache() {
+	public void rebuildCache() {
+		manager.navigateTo().mainPage();
+	    manager.navigateTo().groupsPage();
 		cachedGroups = new ArrayList<GroupData>();
-		manager.navigateTo().groupsPage();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
 		for (WebElement checkbox : checkboxes) {
 			GroupData group = new GroupData();

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="8842" started-at="2015-11-05T15:25:25Z" finished-at="2015-11-05T15:25:34Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="8842" started-at="2015-11-05T15:25:25Z" finished-at="2015-11-05T15:25:34Z">
+      <class name="com.example.tests.GroupCreationTests">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.example.tests.GroupCreationTests@7a92922]" name="setUp" is-config="true" duration-ms="4881" started-at="2015-11-05T18:25:25Z" finished-at="2015-11-05T18:25:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testGroupCreationWithValidData(com.example.tests.GroupData)[pri:0, instance:com.example.tests.GroupCreationTests@7a92922]" name="testGroupCreationWithValidData" duration-ms="2239" started-at="2015-11-05T18:25:30Z" data-provider="randomValidGroupGenerator" finished-at="2015-11-05T18:25:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[GroupData [name = test-508563593]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGroupCreationWithValidData -->
+        <test-method status="PASS" signature="testGroupCreationWithValidData(com.example.tests.GroupData)[pri:0, instance:com.example.tests.GroupCreationTests@7a92922]" name="testGroupCreationWithValidData" duration-ms="1213" started-at="2015-11-05T18:25:32Z" data-provider="randomValidGroupGenerator" finished-at="2015-11-05T18:25:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[GroupData [name = test-186632020]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGroupCreationWithValidData -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.example.tests.GroupCreationTests@7a92922]" name="tearDown" is-config="true" duration-ms="493" started-at="2015-11-05T18:25:34Z" finished-at="2015-11-05T18:25:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.example.tests.GroupCreationTests -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

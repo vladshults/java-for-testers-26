@@ -8,6 +8,7 @@ import java.util.Random;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 public class GroupCreationTests extends TestBase {
@@ -15,7 +16,7 @@ public class GroupCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> randomValidGroupGenerator() {
     List<Object[]> list = new ArrayList<Object[]>();
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < 2; i++) {
 		GroupData group = new GroupData();
 		group.name = generateRandomString();
 		group.header = generateRandomString();
@@ -36,8 +37,10 @@ public class GroupCreationTests extends TestBase {
 
   @Test(dataProvider = "randomValidGroupGenerator")
   public void testGroupCreationWithValidData(GroupData group) throws Exception {
-    app.navigateTo().mainPage();
-    app.navigateTo().groupsPage();
+    //app.navigateTo().mainPage();
+    //app.navigateTo().groupsPage();
+    
+    app.getGroupHelper().rebuildCache();
     
     // save old state
     List<GroupData> oldList = app.getGroupHelper().getGroups();

@@ -53,6 +53,10 @@ public class ContactHelper extends HelperBase {
 		click(By.xpath("//form[2]/input[2]"));
 	}
 	
+	public void rebuildCache() {
+		//
+	}
+	
 	public List<UserData> getContacts() {
 		List<UserData> contacts = new ArrayList<UserData>();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
@@ -166,4 +170,6 @@ public class ContactHelper extends HelperBase {
 		String str = strArray[index];
 		return str;
 	}
+
+	
 }

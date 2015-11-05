@@ -29,6 +29,8 @@ public class ContactCreationTests extends TestBase {
        app.navigateTo().mainPage ();
        app.navigateTo().gotoHomePage ();
        
+       app.getContactHelper().rebuildCache();
+       
        // save old state
        List<UserData> oldList = app.getContactHelper().getContacts();
        
