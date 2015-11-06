@@ -21,9 +21,9 @@ public class GroupHelper extends HelperBase {
 	}
 
 	public void fillGroupForm(GroupData group) {
-		type(By.name("group_name"), group.name);
-		type(By.name("group_header"), group.header);
-		type(By.name("group_footer"), group.footer);
+		type(By.name("group_name"), group.getName());
+		type(By.name("group_header"), group.getHeader());
+		type(By.name("group_footer"), group.getFooter());
 	}
 
 	public void submitGroupCreation() {
@@ -70,10 +70,9 @@ public class GroupHelper extends HelperBase {
 		cachedGroups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
 		for (WebElement checkbox : checkboxes) {
-			GroupData group = new GroupData();
 			String title = checkbox.getAttribute("title");
-			group.name = title.substring("Select (".length(), title.length() - ")".length());
-			cachedGroups.add(group);
+			String name = title.substring("Select (".length(), title.length() - ")".length());
+			cachedGroups.add(new GroupData().withName(name));
 		}
 	}	
 }

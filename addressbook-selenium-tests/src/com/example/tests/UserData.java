@@ -72,4 +72,130 @@ public class UserData implements Comparable<UserData> {
 	public int compareTo(UserData other) {
 		return this.lastname.toLowerCase().compareTo(other.lastname.toLowerCase());
 	}
+	
+	public UserData withFirstName(String name) {
+		this.firstname = name;
+		return this;
+	}
+	
+	public UserData withLastName(String lastName) {
+		this.lastname = lastName;
+		return this;
+	}
+	
+	public UserData withFirstAddr(String addr) {
+		this.firstaddr = addr;
+		return this;
+	}
+	
+	public UserData withMobilePhone(String phone) {
+		this.mobilephone = phone;
+		return this;
+	}
+	
+	public UserData withHomePhone(String phone) {
+		this.homephone = phone;
+		return this;
+	}
+	
+	public UserData withJobPhone(String phone) {
+		this.jobphone = phone;
+		return this;
+	}
+	
+	public UserData withFirstMail(String mail) {
+		this.firstmail = mail;
+		return this;
+	}
+	
+	public UserData withSecondMail(String mail) {
+		this.secondmail = mail;
+		return this;
+	}
+	
+	public UserData withBdate(String date) {
+		this.selectbdate = date;
+		return this;
+	}
+	
+	public UserData withBmonth(String month) {
+		this.selectbmonth = month;
+		return this;
+	}
+	
+	public UserData withByear(String year) {
+		this.byear = year;
+		return this;
+	}
+	
+	public UserData withGroup(String gr) {
+		this.selectgroup = gr;
+		return this;
+	}
+	
+	public UserData withSecondAddr(String addr) {
+		this.secondaddr = addr;
+		return this;
+	}
+	
+	public UserData withSecondPhone(String addr) {
+		this.secondaddr = addr;
+		return this;
+	}
+
+	public String getFirstName() {
+		return firstname;
+	}
+
+	public String getLastName() {
+		return lastname;
+	}
+
+	public String getFirstAddr() {
+		return firstaddr;
+	}
+
+	public String getMobilePhone() {
+		return mobilephone;
+	}
+
+	public String getHomePhone() {
+		return homephone;
+	}
+
+	public String getJobPhone() {
+		return jobphone;
+	}
+
+	public String getFirsMail() {
+		return firstmail;
+	}
+
+	public String getSecondMail() {
+		return secondmail;
+	}
+
+	public String getBDate() {
+		return selectbdate;
+	}
+
+	public String getBMonth() {
+		return selectbmonth;
+	}
+
+	public String getBYear() {
+		return byear;
+	}
+
+	public String getGroup() {
+		return selectgroup;
+	}
+
+	public String getSecondAddr() {
+		return secondaddr;
+	}
+
+	public String getSecondPhone() {
+		return secondphone;
+	}
 }

@@ -23,8 +23,7 @@ public class GroupModificationTests extends TestBase {
 	    
 	    // actions
 		app.getGroupHelper().initGroupModification(index);
-		GroupData group = new GroupData();
-		group.name = "modificated name";
+		GroupData group = new GroupData().withName("modificated name");
 		app.getGroupHelper().fillGroupForm(group);
 		app.getGroupHelper().submitGroupModification();
 		app.navigateTo().groupsPage();

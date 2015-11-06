@@ -17,10 +17,10 @@ public class GroupCreationTests extends TestBase {
   public Iterator<Object[]> randomValidGroupGenerator() {
     List<Object[]> list = new ArrayList<Object[]>();
       for (int i = 0; i < 2; i++) {
-		GroupData group = new GroupData();
-		group.name = generateRandomString();
-		group.header = generateRandomString();
-		group.footer = generateRandomString();
+		GroupData group =  new GroupData()
+		.withName(generateRandomString())
+		.withHeader(generateRandomString())
+		.withFooter(generateRandomString());
 		list.add(new Object[]{ group });
 	  }
 	return list.iterator();
@@ -37,11 +37,10 @@ public class GroupCreationTests extends TestBase {
 
   @Test(dataProvider = "randomValidGroupGenerator")
   public void testGroupCreationWithValidData(GroupData group) throws Exception {
-    //app.navigateTo().mainPage();
-    //app.navigateTo().groupsPage();
-    
-    app.getGroupHelper().rebuildCache();
-    
+    //
+       
+	app.getGroupHelper().rebuildCache();
+	  
     // save old state
     List<GroupData> oldList = app.getGroupHelper().getGroups();
  

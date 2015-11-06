@@ -21,20 +21,20 @@ public class ContactHelper extends HelperBase {
 	}
 
 	public void fillUserForm(UserData user) {
-		type(By.name("firstname"), user.firstname);
-		type(By.name("lastname"), user.lastname);
-	    type(By.name("address"), user.firstaddr);
-	    type(By.name("mobile"), user.mobilephone);
-	    type(By.name("home"), user.homephone);
-	    type(By.name("work"), user.jobphone);
-	    type(By.name("email"), user.firstmail);
-	    type(By.name("email2"), user.secondmail);
-	    selectByText(By.name("bday"), user.selectbdate);
-	    selectByText(By.name("bmonth"), user.selectbmonth);
-	    type(By.name("byear"), user.byear);
-	    selectByText(By.name("new_group"), user.selectgroup);
-	    type(By.name("address2"), user.secondaddr);
-	    type(By.name("phone2"), user.secondphone);
+		type(By.name("firstname"), user.getFirstName());
+		type(By.name("lastname"), user.getLastName());
+	    type(By.name("address"), user.getFirstAddr());
+	    type(By.name("mobile"), user.getMobilePhone());
+	    type(By.name("home"), user.getHomePhone());
+	    type(By.name("work"), user.getJobPhone());
+	    type(By.name("email"), user.getFirsMail());
+	    type(By.name("email2"), user.getSecondMail());
+	    selectByText(By.name("bday"), user.getBDate());
+	    selectByText(By.name("bmonth"), user.getBMonth());
+	    type(By.name("byear"), user.getBYear());
+	    selectByText(By.name("new_group"), user.getGroup());
+	    type(By.name("address2"), user.getSecondAddr());
+	    type(By.name("phone2"), user.getSecondPhone());
 	}
 
 	public void submitUserCreation() {
@@ -99,23 +99,29 @@ public class ContactHelper extends HelperBase {
 
 	public UserData getPseudoRandomContact() {
 		
-		UserData randomContact = new UserData();
-		randomContact.firstname = getPseudoRandomFirstname();
-		randomContact.lastname = getPseudoRandomLastname();
-		randomContact.firstaddr = getPseudoRandomAddr();
-		randomContact.mobilephone = getPseudoRandomPhone();
-		randomContact.homephone = getPseudoRandomPhone();
-		randomContact.jobphone = getPseudoRandomPhone();
-		randomContact.firstmail = getPseudoRandomMail();
-		randomContact.secondmail = getPseudoRandomMail();
-		randomContact.selectbdate = getPseudoRandomSelectBdate();
-		randomContact.selectbmonth = getPseudoRandomSelectBmonth();
-		randomContact.byear = getPseudoRandomByear();
-		randomContact.selectgroup = "[none]";
-		randomContact.secondaddr = getPseudoRandomAddr();
-		randomContact.secondphone = getPseudoRandomPhone();
+		UserData randomContact = new UserData()
+		.withFirstName(getPseudoRandomFirstname())
+		.withLastName(getPseudoRandomLastname())
+		.withFirstAddr(getPseudoRandomAddr())
+		.withMobilePhone(getPseudoRandomPhone())
+		.withHomePhone(getPseudoRandomPhone())
+		.withJobPhone(getPseudoRandomPhone())
+		.withFirstMail(getPseudoRandomMail())
+		.withSecondMail(getPseudoRandomMail())
+		.withBdate(getPseudoRandomSelectBdate())
+		.withBmonth(getPseudoRandomSelectBmonth())
+		.withByear(getPseudoRandomByear())
+		.withGroup(getPseudoRandomGroupName())
+		.withSecondAddr(getPseudoRandomAddr())
+		.withSecondPhone(getPseudoRandomPhone())
+		;
 		
 		return randomContact;
+	}
+
+	private String getPseudoRandomGroupName() {
+		String str = "none";
+		return str;
 	}
 
 	private String getPseudoRandomPhone() {
@@ -180,6 +186,4 @@ public class ContactHelper extends HelperBase {
 		String str = strArray[index];
 		return str;
 	}
-
-	
 }
