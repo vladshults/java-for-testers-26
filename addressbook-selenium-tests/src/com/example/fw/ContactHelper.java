@@ -16,11 +16,12 @@ public class ContactHelper extends HelperBase {
 		super(manager);
 	}
 
-	public void initNewUserCreation() {
+	public ContactHelper initNewUserCreation() {
 		click(By.linkText("add new"));
+		return this;
 	}
 
-	public void fillUserForm(UserData user) {
+	public ContactHelper fillUserForm(UserData user) {
 		type(By.name("firstname"), user.getFirstName());
 		type(By.name("lastname"), user.getLastName());
 	    type(By.name("address"), user.getFirstAddr());
@@ -35,25 +36,30 @@ public class ContactHelper extends HelperBase {
 	    selectByText(By.name("new_group"), user.getGroup());
 	    type(By.name("address2"), user.getSecondAddr());
 	    type(By.name("phone2"), user.getSecondPhone());
+	    return this;
 	}
 
-	public void submitUserCreation() {
+	public ContactHelper submitUserCreation() {
 		click(By.name("submit"));
 		cachedContacts = null;
+		return this;
 	}
 
-	//private void selectContactByFirstElement() {
-	//	click(By.xpath("//input[@name='selected[]']"));
-	//}
+	public ContactHelper initUserModification(int index) {
+		selectContactByIndex(index);
+		return this;
+	}
 
-	public void submitUserModification() {
+	public ContactHelper submitUserModification() {
 		click(By.name("update"));
 		cachedContacts = null;
+		return this;
 	}
 
-	public void submitContactDeletion() {
+	public ContactHelper submitContactDeletion() {
 		click(By.xpath("//form[2]/input[2]"));
 		cachedContacts = null;
+		return this;
 	}
 	
 	List<UserData> cachedContacts = new ArrayList<UserData>();
@@ -85,16 +91,18 @@ public class ContactHelper extends HelperBase {
 		}
 	}
 
-	public void deleteContact(int index) {
+	public ContactHelper deleteContact(int index) {
 		selectContactByIndex(index);
 		submitContactDeletion();
 		cachedContacts = null;
+		return this;
 	}
 
-	public void selectContactByIndex(int index) {
+	public ContactHelper selectContactByIndex(int index) {
 		List<WebElement> rows = driver.findElements(By.name("entry"));
 		List<WebElement> cells = rows.get(index).findElements(By.tagName("td"));
 		cells.get(6).findElement(By.tagName("a")).click();
+		return this;
 	}
 
 	public UserData getPseudoRandomContact() {
@@ -120,7 +128,7 @@ public class ContactHelper extends HelperBase {
 	}
 
 	private String getPseudoRandomGroupName() {
-		String str = "none";
+		String str = "[none]";
 		return str;
 	}
 
@@ -186,4 +194,6 @@ public class ContactHelper extends HelperBase {
 		String str = strArray[index];
 		return str;
 	}
+
+	
 }

@@ -33,11 +33,10 @@ public class ContactCreationTests extends TestBase {
        List<UserData> oldList = app.getContactHelper().getContacts();
        
        // actions
-       app.getContactHelper().initNewUserCreation();
-       
-       app.getContactHelper().fillUserForm(contact);
-       app.getContactHelper().submitUserCreation();
-       app.navigateTo().gotoHomePage();
+       app.getContactHelper()
+       .initNewUserCreation()
+       .fillUserForm(contact)
+       .submitUserCreation();
        
        // save new state
        List<UserData> newList = app.getContactHelper().getContacts();

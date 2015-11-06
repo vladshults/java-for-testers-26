@@ -45,10 +45,10 @@ public class GroupCreationTests extends TestBase {
     List<GroupData> oldList = app.getGroupHelper().getGroups();
  
     // actions
-    app.getGroupHelper().initNewGroupCreation();
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().submitGroupCreation();
-    app.navigateTo().groupsPage();
+    app.getGroupHelper()
+    .initNewGroupCreation()
+    .fillGroupForm(group)
+    .submitGroupCreation();
     
     // save new state
     List<GroupData> newList = app.getGroupHelper().getGroups();

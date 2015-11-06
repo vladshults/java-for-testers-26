@@ -23,33 +23,24 @@ public class ContactModificationTests extends TestBase {
 	    Random rnd = new Random();
 	    int index = rnd.nextInt(oldList.size() - 1);
 	    
-		UserData user = new UserData();
-		user.firstname = "ModificatedUserName";
-	    user.lastname = "ModificatedIvanov";
-	    // user.firstaddr = "125040\n5/2-228 Leningradsky av., Moscow,\nRussia";
-	    // user.mobilephone = "011-7-9161214670";
-	    // user.homephone = "011-7-4992576491";
-	    // user.jobphone = "8-495-644-31-30";
-	    user.firstmail = "modificated@rambler.ru";
-	    // user.secondmail = "groupv@rambler.ru";
-	    user.selectbdate = "2";
-	    user.selectbmonth = "January";
-	    user.byear = "1964";
-	    // user.selectgroup = "Rob";
-	    // user.secondaddr = "101000\n35, Myasnitskaya,\nMoscow,\nRussia";
-	    // user.secondphone = "????";
-	    app.getContactHelper().selectContactByIndex(index);
-	    app.getContactHelper().fillUserForm(user);
-		app.getContactHelper().submitUserModification();
-		app.navigateTo().gotoHomePage();
-		
+		UserData contact = new UserData()
+		.withFirstName("ModificatedUserName")
+		.withLastName("ModificatedIvanov")
+		.withFirstMail("modificated@rambler.ru");
+				
+		 app.getContactHelper()
+	     .initUserModification(index)
+	     .fillUserForm(contact)
+	     .submitUserModification();
+				
 		// save new state
 	    List<UserData> newList = app.getContactHelper().getContacts();
 	    
 	    // compare states
 	    oldList.remove(index);
-	    oldList.add(user);
+	    oldList.add(contact);
 	    Collections.sort(oldList);
+	    Collections.sort(newList);
 	    assertEquals(oldList, newList);
 		
 	}

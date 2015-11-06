@@ -2,10 +2,13 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class GroupModificationTests extends TestBase {
@@ -22,13 +25,17 @@ public class GroupModificationTests extends TestBase {
 	    int index = rnd.nextInt(oldList.size() - 1);
 	    
 	    // actions
-		app.getGroupHelper().initGroupModification(index);
-		GroupData group = new GroupData().withName("modificated name");
-		app.getGroupHelper().fillGroupForm(group);
-		app.getGroupHelper().submitGroupModification();
-		app.navigateTo().groupsPage();
+	    GroupData group = new GroupData()
+	    .withName("ModifName")
+	    .withHeader("ModifHeader")
+	    .withFooter("ModifFooter");
 		
-		// save new state
+	    app.getGroupHelper()
+	    .initGroupModification(index)
+	    .fillGroupForm(group)
+	    .submitGroupModification();
+	    
+	    // save new state
 	    List<GroupData> newList = app.getGroupHelper().getGroups();
 	    
 	    // compare states
