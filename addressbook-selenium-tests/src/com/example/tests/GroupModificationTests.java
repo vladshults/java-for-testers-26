@@ -1,14 +1,12 @@
 package com.example.tests;
 
-import static org.testng.Assert.assertEquals;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class GroupModificationTests extends TestBase {
@@ -39,6 +37,7 @@ public class GroupModificationTests extends TestBase {
 	    oldList.remove(index);
 	    oldList.add(group);
 	    Collections.sort(oldList);
-	    assertEquals(oldList, newList);
-	}
+	    Collections.sort(newList);
+	    assertThat(oldList, equalTo(newList));
+	  }
 }

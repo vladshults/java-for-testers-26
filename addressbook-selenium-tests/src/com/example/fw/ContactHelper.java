@@ -184,7 +184,6 @@ public class ContactHelper extends HelperBase {
 				             "125040 5/2-228 Leningradsky av. Moscow Russia", "1", "@"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
-
 	}
 
 	private String getPseudoRandomLastname() {

@@ -1,6 +1,7 @@
 package com.example.tests;
 
-import static org.testng.Assert.assertEquals;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +31,6 @@ public class ContactRemovalTests extends TestBase {
 	    oldList.remove(index);
 	    Collections.sort(oldList);
 	    Collections.sort(newList);
-	    assertEquals(oldList, newList);
-	}
+	    assertThat(oldList, equalTo(newList));
+	  }
 }

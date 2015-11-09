@@ -9,7 +9,9 @@ import java.util.Random;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 public class GroupCreationTests extends TestBase {
   
@@ -54,7 +56,6 @@ public class GroupCreationTests extends TestBase {
     oldList.add(group);
     Collections.sort(oldList);
     Collections.sort(newList);
-    assertEquals(oldList, newList);
-    
+    assertThat(oldList, equalTo(newList));
   }
 }
