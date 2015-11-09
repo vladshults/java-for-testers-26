@@ -37,7 +37,17 @@ public class GroupCreationTests extends TestBase {
 	  }
   }
 
-  @Test(dataProvider = "randomValidGroupGenerator")
+  
+  //@DataProvider
+  //public Iterator<Object[]> groupsFromFile() {
+   // List<Object[]> list = new ArrayList<Object[]>();
+      
+	  
+	//return list.iterator();
+  //}
+  
+  
+  @Test(dataProvider = "groupsFromFile")
   public void testGroupCreationWithValidData(GroupData group) throws Exception {
     //
        
