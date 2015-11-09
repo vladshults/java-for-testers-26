@@ -15,7 +15,7 @@ public class GroupModificationTests extends TestBase {
 	
 	@Test
 	public void modifySomeGroup() {
-		app.getGroupHelper().rebuildCache();
+		//app.getGroupHelper().rebuildCache();
 	    
 	    // save old state
 	    List<GroupData> oldList = app.getGroupHelper().getGroups();
@@ -30,11 +30,8 @@ public class GroupModificationTests extends TestBase {
 	    .withHeader("ModifHeader")
 	    .withFooter("ModifFooter");
 		
-	    app.getGroupHelper()
-	    .initGroupModification(index)
-	    .fillGroupForm(group)
-	    .submitGroupModification();
-	    
+	    app.getGroupHelper().modificationGroup(index, group);
+	    	    
 	    // save new state
 	    List<GroupData> newList = app.getGroupHelper().getGroups();
 	    

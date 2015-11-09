@@ -15,6 +15,18 @@ public class GroupHelper extends HelperBase {
 		super(manager);
 	}
 
+	public void createGroup(GroupData group) {
+		initNewGroupCreation();
+		fillGroupForm(group);
+		submitGroupCreation();
+	}
+	
+	public void modificationGroup(int index, GroupData group) {
+		initGroupModification(index);
+	    fillGroupForm(group);
+	    submitGroupModification();
+	}
+	
 	public GroupHelper initNewGroupCreation() {
 		click(By.name("new"));
 		// cachedGroups = null;
@@ -65,7 +77,7 @@ public class GroupHelper extends HelperBase {
 	private List<GroupData> cachedGroups = new ArrayList<GroupData>();
 	
 	public List<GroupData> getGroups() {
-		if (cachedGroups == null) {
+		if (cachedGroups == null || cachedGroups.size() < 2) {
 			rebuildCache();
 		}
 		return cachedGroups;
@@ -81,5 +93,7 @@ public class GroupHelper extends HelperBase {
 			String name = title.substring("Select (".length(), title.length() - ")".length());
 			cachedGroups.add(new GroupData().withName(name));
 		}
-	}	
+	}
+
+	
 }

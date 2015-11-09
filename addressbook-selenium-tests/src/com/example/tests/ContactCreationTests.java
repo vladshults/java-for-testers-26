@@ -27,17 +27,14 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "randomValidContactGenerator")
     public void testValidUserCreation(UserData contact) throws Exception {
               
-       app.getContactHelper().rebuildContsCache();
+       //app.getContactHelper().rebuildContsCache();
        
        // save old state
        List<UserData> oldList = app.getContactHelper().getContacts();
        
        // actions
-       app.getContactHelper()
-       .initNewUserCreation()
-       .fillUserForm(contact)
-       .submitUserCreation();
-       
+       app.getContactHelper().createContact(contact);
+             
        // save new state
        List<UserData> newList = app.getContactHelper().getContacts();
        

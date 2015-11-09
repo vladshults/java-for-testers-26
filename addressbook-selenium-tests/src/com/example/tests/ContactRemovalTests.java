@@ -12,7 +12,7 @@ public class ContactRemovalTests extends TestBase {
 
 	@Test
 	public void deleteSomeContact() {
-	    app.getContactHelper().rebuildContsCache();
+	    //app.getContactHelper().rebuildContsCache();
 	       
 	    // save old state
 	    List<UserData> oldList = app.getContactHelper().getContacts();

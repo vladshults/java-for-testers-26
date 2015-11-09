@@ -16,6 +16,18 @@ public class ContactHelper extends HelperBase {
 		super(manager);
 	}
 
+	public void createContact(UserData contact) {
+		 initNewUserCreation();
+	     fillUserForm(contact);
+	     submitUserCreation();
+	}
+	
+	public void modifyContact(int index, UserData contact) {
+		initUserModification(index);
+	    fillUserForm(contact);
+	    submitUserModification();
+	}
+	
 	public ContactHelper initNewUserCreation() {
 		click(By.linkText("add new"));
 		return this;
@@ -65,7 +77,7 @@ public class ContactHelper extends HelperBase {
 	List<UserData> cachedContacts = new ArrayList<UserData>();
 	
 	public List<UserData> getContacts() {
-		if (cachedContacts == null) {
+		if (cachedContacts == null || cachedContacts.size() < 2) {
 			rebuildContsCache();
 		}
 		return cachedContacts;
@@ -195,5 +207,4 @@ public class ContactHelper extends HelperBase {
 		return str;
 	}
 
-	
 }

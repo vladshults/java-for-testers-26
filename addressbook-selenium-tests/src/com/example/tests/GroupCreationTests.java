@@ -39,17 +39,14 @@ public class GroupCreationTests extends TestBase {
   public void testGroupCreationWithValidData(GroupData group) throws Exception {
     //
        
-	app.getGroupHelper().rebuildCache();
+	//app.getGroupHelper().rebuildCache();
 	  
     // save old state
     List<GroupData> oldList = app.getGroupHelper().getGroups();
  
     // actions
-    app.getGroupHelper()
-    .initNewGroupCreation()
-    .fillGroupForm(group)
-    .submitGroupCreation();
-    
+    app.getGroupHelper().createGroup(group);
+       
     // save new state
     List<GroupData> newList = app.getGroupHelper().getGroups();
     

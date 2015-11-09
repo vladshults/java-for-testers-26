@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase {
 	@Test
 	public void modifySomeContact() {
 		
-		app.getContactHelper().rebuildContsCache();
+		//app.getContactHelper().rebuildContsCache();
 	       
 	    // save old state
 	    List<UserData> oldList = app.getContactHelper().getContacts();
@@ -28,11 +28,8 @@ public class ContactModificationTests extends TestBase {
 		.withLastName("ModificatedIvanov")
 		.withFirstMail("modificated@rambler.ru");
 				
-		 app.getContactHelper()
-	     .initUserModification(index)
-	     .fillUserForm(contact)
-	     .submitUserModification();
-				
+		 app.getContactHelper().modifyContact(index, contact);
+	     		
 		// save new state
 	    List<UserData> newList = app.getContactHelper().getContacts();
 	    
