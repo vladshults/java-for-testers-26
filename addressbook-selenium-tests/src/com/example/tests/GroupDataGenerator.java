@@ -1,11 +1,15 @@
 package com.example.tests;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.thoughtworks.xstream.XStream;
 
 public class GroupDataGenerator {
 
@@ -37,17 +41,35 @@ public class GroupDataGenerator {
 	}
 
 	private static void saveGroupsToXmlFile(List<GroupData> groups, File file) throws IOException {
-		}
+		XStream xstream = new XStream();
+		xstream.alias("group", GroupData.class);
+		String xml = xstream.toXML(groups);
+		FileWriter writer = new FileWriter(file);
+		writer.write(xml);
+		writer.close();
+	}
+	
+	//private static void loadGroupsFromXmlFile(List<GroupData> groups, File file) throws IOException {
+	//}
 
 	private static void saveGroupsToCsvFile(List<GroupData> groups, File file) throws IOException {
 		FileWriter writer = new FileWriter(file);
 		for (GroupData group : groups) {
-			writer.write(group.getName() + "," + group.getHeader() + "," + group.getFooter() + "\n");
+			writer.write(group.getName() + "," + group.getHeader() + "," + group.getFooter() + ",!" + "\n");
 		}
 		writer.close();
 	}
+	
+	public static List<GroupData> loadGroupsFromCsvFile (File file) throws IOException {
+		List<GroupData> list = new ArrayList<GroupData>();
+		FileReader reader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		
+		bufferedReader.close();
+		return list;
+	}
 
-	private static List<GroupData> generateRandomGroups(int amount) {
+	public static List<GroupData> generateRandomGroups(int amount) {
 		List<GroupData> list = new ArrayList<GroupData>();
 	      for (int i = 0; i < amount; i++) {
 			GroupData group =  new GroupData()

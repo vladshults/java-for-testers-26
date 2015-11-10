@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase {
 	    type(By.name("mobile"), user.getMobilePhone());
 	    type(By.name("home"), user.getHomePhone());
 	    type(By.name("work"), user.getJobPhone());
-	    type(By.name("email"), user.getFirsMail());
+	    type(By.name("email"), user.getFirstMail());
 	    type(By.name("email2"), user.getSecondMail());
 	    selectByText(By.name("bday"), user.getBDate());
 	    selectByText(By.name("bmonth"), user.getBMonth());
@@ -139,46 +139,46 @@ public class ContactHelper extends HelperBase {
 		return randomContact;
 	}
 
-	private String getPseudoRandomGroupName() {
+	public String getPseudoRandomGroupName() {
 		String str = "[none]";
 		return str;
 	}
 
-	private String getPseudoRandomPhone() {
+	public String getPseudoRandomPhone() {
 		String strArray[] = {"", "", "", "+1 650 961 2044", "111111111", "999-999-999-999", "+7-495-444-77-77", "011-7-499-257-66-91", 
 							 "123456789", "987654321", "8-495-667-4682", "8-916-1214580", "+7-903-2123698", "011_7_926_1234562", "7-903-2123698"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomByear() {
+	public String getPseudoRandomByear() {
 		String strArray[] = {"", "", "", "", "1964", "2016", "1900", "1920", "2000", "1999", "1972", "1973", "1950", "1947", "2001", "-"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomSelectBmonth() {
+	public String getPseudoRandomSelectBmonth() {
 		String strArray[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", 
 				             "October", "November", "December", "-"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomSelectBdate() {
+	public String getPseudoRandomSelectBdate() {
 		String strArray[] = {"-", "1", "11", "22", "31", "7", "8", "16", "19", 
 	                         "30", "20", "21", "3"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomMail() {
+	public String getPseudoRandomMail() {
 		String strArray[] = {"", "", "", "", "pupsik@yahoo.com", "mamba@rambler.ru", "tester@mail.ru", "QA@gmail.com", "admin@lexpr.ru", 
                              "pseudo@1.us", "vakh@222.com.uk", "1@rambler.ru", "@"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomAddr() {
+	public String getPseudoRandomAddr() {
 		String strArray[] = {"", "", "", "", "", "125040 Москва Ленинградский проспект 5/2-228", "156000, Кострома, ул. Молочная Гора, 2", 
 				             "4970 El Camino Real #110 Los Altos CA 94022 USA", "na_derevnyu_dedushke", "pseudoaddress", 
 				             "125040 5/2-228 Leningradsky av. Moscow Russia", "1", "@"};
@@ -186,14 +186,14 @@ public class ContactHelper extends HelperBase {
 		return str;
 	}
 
-	private String getPseudoRandomLastname() {
+	public String getPseudoRandomLastname() {
 		String strArray[] = {"", "", "", "", "Ivanko", "Ivanovsky", "Ivanidze", "Ivanter", "Иванов", 
 				             "Ivansker", "Ivashov", "_Iv_", "Iv", "I", "-Ivann-"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;
 	}
 
-	private String getPseudoRandomFirstname() {
+	public String getPseudoRandomFirstname() {
 		String strArray[] = {"", "", "", "", "Ivan", "Ivani", "Ivanna", "Ivashka", "Иван", "Вано", "Iva", "_Iv_", "Iv", "I", "-Ivanna-"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;

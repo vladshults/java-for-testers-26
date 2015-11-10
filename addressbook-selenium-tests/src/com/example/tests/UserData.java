@@ -167,7 +167,7 @@ public class UserData implements Comparable<UserData> {
 		return jobphone;
 	}
 
-	public String getFirsMail() {
+	public String getFirstMail() {
 		return firstmail;
 	}
 
