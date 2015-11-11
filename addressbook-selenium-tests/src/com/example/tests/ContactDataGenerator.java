@@ -7,14 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import com.example.fw.ApplicationManager;
 import com.thoughtworks.xstream.XStream;
 
 public class ContactDataGenerator {
 	
-	protected static ApplicationManager app;
-
 	public static void main(String[] args) throws IOException {
 		if (args.length < 3) {
 			System.out.println("Please specify parameters: <amount of test data> <file> <format>");
@@ -44,7 +42,7 @@ public class ContactDataGenerator {
 
 	private static void saveContactsToXmlFile(List<UserData> contacts, File file) throws IOException {
 		XStream xstream = new XStream();
-		xstream.alias("contact", GroupData.class);
+		xstream.alias("contact", UserData.class);
 		String xml = xstream.toXML(contacts);
 		FileWriter writer = new FileWriter(file);
 		writer.write(xml);
@@ -54,7 +52,7 @@ public class ContactDataGenerator {
 	private static void saveContactsToCsvFile(List<UserData> contacts, File file) throws IOException {
 		FileWriter writer = new FileWriter(file);
 		for (UserData contact : contacts) {
-			writer.write(contact.getFirstName() + "," +
+			writer.write(getPseudoRandomFirstname() + "," +
 						 contact.getLastName() + "," +
 						 contact.getFirstAddr() + "," +
 						 contact.getMobilePhone() + "," +
@@ -84,10 +82,104 @@ public class ContactDataGenerator {
 	public static List<UserData> generateRandomContacts(int amount) {
 		List<UserData> list = new ArrayList<UserData>();
 	      for (int i = 0; i < amount; i++) {
-			UserData contact =  new UserData();
-			app.getContactHelper().getPseudoRandomContact();
+			UserData contact =  new UserData()
+					.withFirstName(getPseudoRandomFirstname())
+					.withLastName(getPseudoRandomLastname())
+					.withFirstAddr(getPseudoRandomAddr())
+					.withMobilePhone(getPseudoRandomPhone())
+					.withHomePhone(getPseudoRandomPhone())
+					.withJobPhone(getPseudoRandomPhone())
+					.withFirstMail(getPseudoRandomMail())
+					.withSecondMail(getPseudoRandomMail())
+					.withBdate(getPseudoRandomSelectBdate())
+					.withBmonth(getPseudoRandomSelectBmonth())
+					.withByear(getPseudoRandomByear())
+					.withGroup(getPseudoRandomGroupName())
+					.withSecondAddr(getPseudoRandomAddr())
+					.withSecondPhone(getPseudoRandomPhone())
+			;
 			list.add(contact);
 			}
 	    return list;
-	}      
-}
+	}
+
+	/*
+	private static String generateRandomString() {
+		Random rnd = new Random();
+		  if (rnd.nextInt(3) == 0) {
+			  return "";
+		  } else {
+			  return "test" + rnd.nextInt();
+		  }	
+	}
+*/
+
+	private static String getPseudoRandomGroupName() {
+		String str = new String("[none]");
+		return str;
+	}
+	
+	private static String getPseudoRandomPhone() {
+		String strArray[] = {"", "", "", "+1 650 961 2044", "111111111", "999-999-999-999", "+7-495-444-77-77", "011-7-499-257-66-91", 
+							 "123456789", "987654321", "8-495-667-4682", "8-916-1214580", "+7-903-2123698", "011_7_926_1234562", "7-903-2123698"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomByear() {
+		String strArray[] = {"", "", "", "", "1964", "2016", "1900", "1920", "2000", "1999", "1972", "1973", "1950", "1947", "2001", "-"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomSelectBmonth() {
+		String strArray[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", 
+				             "October", "November", "December", "-"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomSelectBdate() {
+		String strArray[] = {"-", "1", "11", "22", "31", "7", "8", "16", "19", 
+	                         "30", "20", "21", "3"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomMail() {
+		String strArray[] = {"", "", "", "", "pupsik@yahoo.com", "mamba@rambler.ru", "tester@mail.ru", "QA@gmail.com", "admin@lexpr.ru", 
+                             "pseudo@1.us", "vakh@222.com.uk", "1@rambler.ru", "@"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomAddr() {
+		String strArray[] = {"", "", "", "", "", "125040 Moscow, Leningradsky av. 5/2-228", "156000, Kostroma, Molochnaya gora str., b. 2", 
+	             "4970 El Camino Real #110 Los Altos CA 94022 USA", "na_derevnyu_dedushke", "pseudoaddress", 
+	             "125040 5/2-228 Leningradsky av. Moscow Russia", "1", "@"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+
+	}
+
+	private static String getPseudoRandomLastname() {
+		String strArray[] = {"", "", "", "", "Ivanko", "Ivanovsky", "Ivanidze", "Ivanter", "Иванов", 
+	             "Ivansker", "Ivashov", "_Iv_", "Iv", "I", "-Ivann-"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+
+	private static String getPseudoRandomFirstname() {
+		String strArray[] = {"", "", "", "", "Ivan", "Ivani", "Ivanna", "Ivashka", "Vanya", "Rodger", "Iva", "_Iv_", "Iv", "I", "-Ivanna-"};
+		String str = getStringFromArrayByRandomIndex(strArray);
+		return str;
+	}
+	
+	public static String getStringFromArrayByRandomIndex(String[] strArray) {
+		Random rnd = new Random();
+		int index = rnd.nextInt(strArray.length - 1);
+		String str = strArray[index];
+		return str;
+	}
+}      
+
