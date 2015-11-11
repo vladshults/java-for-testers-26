@@ -33,7 +33,7 @@ public class TestBase {
 	}
 
 	@DataProvider
-	public Iterator<Object[]> randomValidGroupGenerator() {
+	public static Iterator<Object[]> randomValidGroupGenerator() {
 	    return wrapGroupsForDataProvider(generateRandomGroups(5)).iterator();
 	}
 

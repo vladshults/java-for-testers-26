@@ -49,8 +49,11 @@ public class GroupDataGenerator {
 		writer.close();
 	}
 	
-	//private static void loadGroupsFromXmlFile(List<GroupData> groups, File file) throws IOException {
-	//}
+	public static List<GroupData> loadGroupsFromXmlFile(File file) throws IOException {
+		XStream xstream = new XStream();
+		xstream.alias("group", GroupData.class);
+		return (List<GroupData>) xstream.fromXML(file);
+	}
 
 	private static void saveGroupsToCsvFile(List<GroupData> groups, File file) throws IOException {
 		FileWriter writer = new FileWriter(file);
@@ -64,7 +67,17 @@ public class GroupDataGenerator {
 		List<GroupData> list = new ArrayList<GroupData>();
 		FileReader reader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(reader);
-		
+		String line = bufferedReader.readLine();
+		while (line != null) {
+			String[] part = line.split(",");
+			GroupData group = new GroupData()
+			.withName(part[0])
+			.withHeader(part[1])
+			.withFooter(part[2]);
+			list.add(group);
+			//System.out.println(line);
+			line = bufferedReader.readLine();
+		}
 		bufferedReader.close();
 		return list;
 	}

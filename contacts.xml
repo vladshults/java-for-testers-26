@@ -1,0 +1,48 @@
+<list>
+  <contact>
+    <firstname></firstname>
+    <lastname>Ivanter</lastname>
+    <firstaddr>125040 Moscow, Leningradsky av. 5/2-228</firstaddr>
+    <mobilephone>+7-495-444-77-77</mobilephone>
+    <homephone></homephone>
+    <jobphone>999-999-999-999</jobphone>
+    <firstmail></firstmail>
+    <secondmail></secondmail>
+    <selectbdate>11</selectbdate>
+    <selectbmonth>December</selectbmonth>
+    <byear>1947</byear>
+    <selectgroup>[none]</selectgroup>
+    <secondaddr>123456789</secondaddr>
+  </contact>
+  <contact>
+    <firstname></firstname>
+    <lastname>Ivashov</lastname>
+    <firstaddr>125040 Moscow, Leningradsky av. 5/2-228</firstaddr>
+    <mobilephone>987654321</mobilephone>
+    <homephone></homephone>
+    <jobphone></jobphone>
+    <firstmail>vakh@222.com.uk</firstmail>
+    <secondmail>mamba@rambler.ru</secondmail>
+    <selectbdate>30</selectbdate>
+    <selectbmonth>July</selectbmonth>
+    <byear>1900</byear>
+    <selectgroup>[none]</selectgroup>
+    <secondaddr>8-916-1214580</secondaddr>
+  </contact>
+  <contact>
+    <firstname>Ivan</firstname>
+    <lastname>_Iv_</lastname>
+    <firstaddr></firstaddr>
+    <mobilephone></mobilephone>
+    <homephone>011-7-499-257-66-91</homephone>
+    <jobphone>8-495-667-4682</jobphone>
+    <firstmail>vakh@222.com.uk</firstmail>
+    <secondmail>1@rambler.ru</secondmail>
+    <selectbdate>31</selectbdate>
+    <selectbmonth>February</selectbmonth>
+    <byear></byear>
+    <selectgroup>[none]</selectgroup>
+    <secondaddr>8-916-1214580</secondaddr>
+  </contact>
+  
+</list>

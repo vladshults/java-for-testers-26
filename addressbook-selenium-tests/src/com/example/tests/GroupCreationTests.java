@@ -2,7 +2,6 @@ package com.example.tests;
 
 import java.io.File;
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -13,8 +12,7 @@ import org.testng.annotations.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import static com.example.tests.GroupDataGenerator.loadGroupsFromCsvFile;
-
+import static com.example.tests.GroupDataGenerator.*;
 
 public class GroupCreationTests extends TestBase {
   

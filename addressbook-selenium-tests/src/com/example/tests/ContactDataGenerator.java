@@ -52,33 +52,62 @@ public class ContactDataGenerator {
 	private static void saveContactsToCsvFile(List<UserData> contacts, File file) throws IOException {
 		FileWriter writer = new FileWriter(file);
 		for (UserData contact : contacts) {
-			writer.write(getPseudoRandomFirstname() + "," +
-						 contact.getLastName() + "," +
-						 contact.getFirstAddr() + "," +
-						 contact.getMobilePhone() + "," +
-						 contact.getHomePhone() + "," +
-						 contact.getJobPhone() + "," +
-						 contact.getFirstMail() + "," +
-						 contact.getSecondMail() + "," +
-						 contact.getBDate() + "," +
-						 contact.getBMonth() + "," +
-						 contact.getBYear() + "," +
-						 contact.getGroup() + "," +
-						 contact.getSecondAddr() + "," +
-						 contact.getSecondPhone() +  ",!" + "\n");
+			writer.write(getPseudoRandomFirstname() + ";" +
+						 contact.getLastName() + ";" +
+						 contact.getFirstAddr() + ";" +
+						 contact.getMobilePhone() + ";" +
+						 contact.getHomePhone() + ";" +
+						 contact.getJobPhone() + ";" +
+						 contact.getFirstMail() + ";" +
+						 contact.getSecondMail() + ";" +
+						 contact.getBDate() + ";" +
+						 contact.getBMonth() + ";" +
+						 contact.getBYear() + ";" +
+						 contact.getGroup() + ";" +
+						 contact.getSecondAddr() + ";" +
+						 contact.getSecondPhone() +  ";!" + "\n");
 		}
 		writer.close();
 	}
 
-	public static List<GroupData> loadGroupsFromCsvFile (File file) throws IOException {
-		List<GroupData> list = new ArrayList<GroupData>();
+	public static List<UserData> loadContactsFromCsvFile (File file) throws IOException {
+		List<UserData> list = new ArrayList<UserData>();
 		FileReader reader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(reader);
-		// todo: add readlines here
+		String line = bufferedReader.readLine();
+		while (line != null) {
+			String[] part = line.split(";");
+			UserData contact = new UserData()
+					.withFirstName(part[0])
+					.withLastName(part[1])
+					.withFirstAddr(part[2])
+					.withMobilePhone(part[3])
+					.withHomePhone(part[4])
+					.withJobPhone(part[5])
+					.withFirstMail(part[6])
+					.withSecondMail(part[7])
+					.withBdate(part[8])
+					.withBmonth(part[9])
+					.withByear(part[10])
+					.withGroup(part[11])
+					.withSecondAddr(part[12])
+					.withSecondPhone(part[13])
+			;
+			//System.out.println(line);
+			list.add(contact);
+			line = bufferedReader.readLine();
+		}
 		bufferedReader.close();
 		return list;
 	}
 
+	public static List<UserData> loadContactsFromXmlFile(File file) throws IOException {
+		XStream xstream = new XStream();
+		xstream.alias("contact", UserData.class);
+		return (List<UserData>) xstream.fromXML(file);
+	}
+	
+	
 	public static List<UserData> generateRandomContacts(int amount) {
 		List<UserData> list = new ArrayList<UserData>();
 	      for (int i = 0; i < amount; i++) {
@@ -163,7 +192,7 @@ public class ContactDataGenerator {
 	}
 
 	private static String getPseudoRandomLastname() {
-		String strArray[] = {"", "", "", "", "Ivanko", "Ivanovsky", "Ivanidze", "Ivanter", "Иванов", 
+		String strArray[] = {"", "", "", "", "Ivanko", "Ivanovsky", "Ivanidze", "Ivanter", "Ivanov", 
 	             "Ivansker", "Ivashov", "_Iv_", "Iv", "I", "-Ivann-"};
 		String str = getStringFromArrayByRandomIndex(strArray);
 		return str;

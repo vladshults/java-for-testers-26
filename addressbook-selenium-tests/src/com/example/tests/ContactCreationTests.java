@@ -3,6 +3,8 @@ package com.example.tests;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -10,6 +12,7 @@ import java.util.List;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import static com.example.tests.ContactDataGenerator.*;
 
 public class ContactCreationTests extends TestBase {
   
@@ -25,7 +28,21 @@ public class ContactCreationTests extends TestBase {
 	}
 	
 	
-    @Test(dataProvider = "randomValidContactGenerator")
+	@DataProvider
+	public Iterator<Object[]> contactsFromFile() throws IOException {
+	    return wrapContactsForDataProvider(loadContactsFromXmlFile(new File("contacts.xml"))).iterator();
+	}
+	
+    private List<Object[]> wrapContactsForDataProvider(List<UserData> contacts) {
+    	List<Object[]> list = new ArrayList<Object[]>();
+		for (UserData contact : contacts) {
+			list.add(new Object[]{contact});
+		}
+		return list;
+	}
+
+
+	@Test(dataProvider = "contactsFromFile")
     public void testValidUserCreation(UserData contact) throws Exception {
               
        //app.getContactHelper().rebuildContsCache();
