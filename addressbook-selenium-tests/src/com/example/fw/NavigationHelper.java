@@ -9,7 +9,7 @@ public class NavigationHelper extends HelperBase {
 	}
 
 	public void mainPage() {
-		driver.get(manager.baseUrl + "/addressbookv4.1.4/");
+		driver.get(manager.baseUrl);
 	}
 
 	public void groupsPage() {
