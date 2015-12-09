@@ -9,28 +9,19 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class ApplicationManager {
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public String baseUrl;
 	// private StringBuffer verificationErrors = new StringBuffer();
 	
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
+	private HibernateHelper hibernateHelper;
 	private Properties properties;
 	
 	public ApplicationManager(Properties properties) {
 		this.properties = properties;
-		String browser = properties.getProperty("browser");
-		if ("firefox".equals(browser)) {
-			driver = new FirefoxDriver();
-		} else if ("ie".equals(browser)) {
-			driver = new InternetExplorerDriver();
-		} else {
-			throw new Error("Unsupported browser " + browser);
-		}
-		baseUrl = properties.getProperty("baseUrl");
-		driver.get(baseUrl);
-	    // driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	public void stop() {
@@ -56,5 +47,29 @@ public class ApplicationManager {
 				contactHelper = new ContactHelper(this);
 		}
 		return contactHelper;
+	}
+	
+	public WebDriver getDriver() {
+		String browser = properties.getProperty("browser");
+		if (driver == null) {
+			if ("firefox".equals(browser)) {
+				driver = new FirefoxDriver();
+			} else if ("ie".equals(browser)) {
+				driver = new InternetExplorerDriver();
+			} else {
+				throw new Error("Unsupported browser " + browser);
+			}
+			baseUrl = properties.getProperty("baseUrl");
+			driver.get(baseUrl);
+		}
+		
+		return driver;
+	}
+
+	public HibernateHelper getHibernateHelper() {
+		if (hibernateHelper == null) {
+			hibernateHelper = new HibernateHelper(this);
+		}
+	return hibernateHelper;
 	}
 }
